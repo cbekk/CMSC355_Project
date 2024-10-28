@@ -8,13 +8,20 @@ public class Main {
     System.out.println(result);
     String SelectedOption = Purpose();
     System.out.println(SelectedOption);
-    String[] choise = RequestPrescription();
-        System.out.println(Arrays.toString(choise));
+    String[][]choise = RequestPrescription();
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("%-15s", choise[i][0]);
+        }
+        System.out.println();
+
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("%15s", choise[i][1]);
+        }
     }
     public static String Userlogin(){
         Scanner Login = new Scanner(System.in);
-        String Usernamebase = "Botime";
-        String Passwordbase = "Goodfries";
+        String Usernamebase = "1";
+        String Passwordbase = "2";
         String username = "";
         String password = "";
         int usernum = 0;
@@ -49,10 +56,29 @@ public class Main {
         selection = Option.nextLine();
         return selection;
     }
-    public static String[] RequestPrescription(){
-        String[] prescription = new String[2];
-        prescription[0] = "Medication A"; // Assigning values
-        prescription[1] = "Medication B";
+    public static String[][] RequestPrescription() {
+        Scanner Presinfo = new Scanner(System.in);
+        String[][] prescription = new String[4][2];
+        prescription[0][0] = "Doctor";
+        prescription[1][0] = "Prescription";
+        prescription[2][0] = "Status";
+        prescription[3][0] = "Action";
+        while ((prescription[0][1]== null  ||prescription[0][1].isEmpty())
+                || (prescription[1][1]== null||prescription[1][1].isEmpty())) {
+            if (prescription[0][1] == null || prescription[0][1].isEmpty()) {
+                System.out.println("Enter your Prescription name: ");
+                prescription[0][1] = Presinfo.nextLine();
+            }
+            if (prescription[1][1] == null || prescription[1][1].isEmpty()) {
+                System.out.println("Enter your Doctor's name: ");
+                prescription[1][1] = Presinfo.nextLine();
+            }
+            if (prescription[0][1].isEmpty() || prescription[1][1].isEmpty()) {
+                System.out.println("Prescription name and/or Doctor name not entered. Please try again. ");
+            }
+        }
+        prescription[2][1] = "Pending";
+        prescription[3][1] = "Submitted";
         return prescription;
     }
 }
