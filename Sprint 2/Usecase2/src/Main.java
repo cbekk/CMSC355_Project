@@ -1,22 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.util.Arrays;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 public class Main {
     public static void main(String[] args) {
     String result = Userlogin();
     System.out.println(result);
     String SelectedOption = Purpose();
     System.out.println(SelectedOption);
-    String[][]choise = RequestPrescription();
-        for (int i = 0; i < 4; i++) {
-            System.out.printf("%-15s", choise[i][0]);
-        }
-        System.out.println();
-
-        for (int i = 0; i < 4; i++) {
-            System.out.printf("%15s", choise[i][1]);
-        }
+    String[][]answer = Doyouhavehistory();
+    if (answer == null){
+        System.out.println("You have no history of prescriptions.");
+    }
+    else {
+        DisplayPresciption(answer);
+    }
+    String[][] choise = RequestPrescription();
+    DisplayPresciption(choise);
+    Recievedbydoc(choise);
+    Approvedbydoc(choise);
     }
     public static String Userlogin(){
         Scanner Login = new Scanner(System.in);
@@ -24,8 +26,8 @@ public class Main {
         String Passwordbase = "2";
         String username = "";
         String password = "";
-        int usernum = 0;
-        int passnum = 0;
+        int usernum;
+        int passnum;
         while (!Usernamebase.equals(username) || !Passwordbase.equals(password)) {
             usernum = 0;
             passnum = 0;
@@ -50,35 +52,122 @@ public class Main {
         return "successful";
     }
     public static String Purpose(){
-        String selection = "";
+        String selection;
         Scanner Option = new Scanner(System.in);
         System.out.println("Would you like to:\nreview prescriptions\nreview doctors\nRequest Prescription ");
-        selection = Option.nextLine();
+        selection = Option.nextLine();// Ask group what they want to happen if request prescription isn't selected
         return selection;
+    }
+    public static String[][] Doyouhavehistory(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(2);
+        String[][] history = null;
+        if (randomNumber == 1){
+            history = new String[2][4];
+            history[0][0] = "Doctor";
+            history[0][1] = "Prescription";
+            history[0][2] = "Status";
+            history[0][3] = "Actions";
+            history[1][0] = "George Henderson";
+            history[1][1] = "Doxcil";
+            history[1][2] = "Accepted";
+            history[1][3] = "View Details";
+        }
+            return history;
+
     }
     public static String[][] RequestPrescription() {
         Scanner Presinfo = new Scanner(System.in);
-        String[][] prescription = new String[4][2];
-        prescription[0][0] = "Doctor";
-        prescription[1][0] = "Prescription";
-        prescription[2][0] = "Status";
-        prescription[3][0] = "Action";
-        while ((prescription[0][1]== null  ||prescription[0][1].isEmpty())
-                || (prescription[1][1]== null||prescription[1][1].isEmpty())) {
-            if (prescription[0][1] == null || prescription[0][1].isEmpty()) {
-                System.out.println("Enter your Prescription name: ");
-                prescription[0][1] = Presinfo.nextLine();
-            }
-            if (prescription[1][1] == null || prescription[1][1].isEmpty()) {
-                System.out.println("Enter your Doctor's name: ");
-                prescription[1][1] = Presinfo.nextLine();
-            }
-            if (prescription[0][1].isEmpty() || prescription[1][1].isEmpty()) {
-                System.out.println("Prescription name and/or Doctor name not entered. Please try again. ");
+        Scanner Presnumber = new Scanner(System.in);
+        boolean checker = false;
+        int numberPres = 0;
+        while (!checker) {
+            System.out.println("Enter the number of prescriptions you want to request: ");
+            try{
+                numberPres = Presnumber.nextInt();
+                checker = true;
+            }catch(InputMismatchException e){
+            System.out.println("Please enter a valid number");
+            Presnumber.nextLine();
             }
         }
-        prescription[2][1] = "Pending";
-        prescription[3][1] = "Submitted";
+        String[][] prescription = new String[numberPres+1][4];
+        prescription[0][0] = "Prescription";
+        prescription[0][1] = "Doctor";
+        prescription[0][2] = "Status";
+        prescription[0][3] = "Actions";
+        for(int i = 1; i <= numberPres; i++) {
+            for (int j = 0; j < 1; j++) {
+            while ((prescription[i][j] == null || prescription[i][j].isEmpty())
+                    || (prescription[i][j+1] == null || prescription[i][j+1].isEmpty())) {
+                if (prescription[i][j] == null || prescription[i][j].isEmpty()) {
+                    System.out.println("Enter your Prescription name: ");
+                    prescription[i][j] = Presinfo.nextLine();
+                }
+                if (prescription[i][j+1] == null || prescription[i][j+1].isEmpty()) {
+                    System.out.println("Enter your Doctor's name: ");
+                    prescription[i][j+1] = Presinfo.nextLine();
+                }
+                if (prescription[i][j].isEmpty() || prescription[i][j+1].isEmpty()) {
+                    System.out.println("Prescription name and/or Doctor name not entered. Please try again. ");
+                }
+            }
+        }
+            }
+        for (int i =1; i <= numberPres; i++){
+            prescription[i][2] = "Pending";
+            prescription[i][3] = "View Details";
+        }
         return prescription;
     }
+    public static void DisplayPresciption(String[][] prescription) {
+        for (int i = 0; i < prescription.length; i++) {
+            for (int j = 0; j < prescription[0].length; j++) {
+                if (i > 0 && j == 1) {
+                    System.out.print(prescription[i][j] + "          ");
+                }
+                else if (i > 0 && j == 0){
+                    System.out.print(prescription[i][j] + "   ");
+                }
+                else if (i > 0 && j == 2){
+                    System.out.print(prescription[i][j] + "  ");
+                }
+                else{
+                    System.out.print(prescription[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void Recievedbydoc(String[][] prescription){
+        Random random = new Random();
+        Random random2 = new Random();
+        int randomnum = 0;
+        int randomnum2 =0;
+        while (randomnum2 == randomnum) {
+            randomnum = random.nextInt(2);
+            randomnum2 = random2.nextInt(2);
+            if (randomnum == randomnum2) {
+                System.out.println("There was an error. Prescription not received.");
+            } else {
+                System.out.println("prescription received!");
+            }
+        }
+    }
+    public static void Approvedbydoc(String[][] prescription){
+        Random random = new Random();
+        Random random2 = new Random();
+        int randomnum = 0;
+        int randomnum2 =0;
+        while (randomnum2 == randomnum) {
+            randomnum = random.nextInt(2);
+            randomnum2 = random2.nextInt(2);
+            if (randomnum == randomnum2) {
+                System.out.println("Prescription not approved.");
+            } else {
+                System.out.println("Prescription approved!");
+            }
+        }
+    }
+
 }
