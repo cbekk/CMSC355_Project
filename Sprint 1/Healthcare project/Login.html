@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="logincointainer">
+            <div class="slider"> 
+                
+            </div>
+
+            <div class="leftcontent">
+                <h1 class="header">Who are you loging in as? </h1>
+                
+                <ul class="option_list">
+                    <li class="option"> <button class = "opt" id="doctor"> Doctor</button></li>
+                    <li class="option"> <button class = "opt" id="pharmacist">Pharmacist</button></li>
+                    <li class="option"> <button class = "opt" id="paitent">Paitent</button></li>
+                </ul>
+            </div>
+
+            <div class="rightside">
+                <div class="r_header">Login</div>
+                <div class="email_pass_container">
+                    <form class="email_pass" id = "form">
+
+                        <div class="em_holder">
+                            <span class="email">Email</span>
+                            <input class="email_input" type="text" placeholder="email" id = "email_holder">
+                        </div>
+
+                        <div class= "pass_holder">
+                            <span class="password">Password</span>
+                            <input class="pass_input" type="password" placeholder="password" id = "password">
+                        </div>
+                       <input type= "submit" value ="submit" id="submit"> 
+                       <div class="links">
+                        <a href="#" class="forgot">Forgot Password?</a>
+                        <a href="#" class="register">Register</a>
+                       </div>
+                    </form>
+                </div>
+                <div class="backbutton">
+                    <button id="back">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

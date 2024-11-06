@@ -1,0 +1,231 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Strait&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Strait';
+}
+
+.maincontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fcdede;
+    transition: all 0.5s ease;
+}
+
+.logincointainer{   
+    background-color: white;
+    border-radius: 10px;
+    height: 80%;
+    width: 850px;
+    display: flex;
+    padding: 40px;
+    position: relative;
+    justify-content: space-between;
+}
+
+.slider{
+    background-color: #ffc7c7;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+    opacity: 1;
+    transition: all 0.9s ease;
+}
+
+.leftcontent{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+    gap: 10px;
+    width: 40%;
+    height: 82%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.header{
+    margin-top: 10%;
+    padding: 10px;
+    font-weight: bolder;
+    border:#ffc7c7;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+    border-style: solid;
+}
+
+.option_list{
+    margin-top: 50px;
+    margin-bottom: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    list-style-type: none;
+}
+
+.option button{
+    width: 250px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: larger;
+    background-color: #ffc7c7;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.option button:hover{
+    transform: translateY(-10px);
+}
+
+.option #doctor:hover{
+    background-color: #dbdaff;
+
+}
+
+.option #pharmacist:hover {
+    background-color: #e9c1f6;
+
+}
+
+.option #paitent:hover{
+    background-color: #c3ffd6;
+
+}
+
+.rightside{
+    position: relative;
+    width: 50%;
+    height: 95%;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in-out;
+    gap: 20px;
+    opacity: 0;
+}
+
+.r_header{
+position: relative;
+top: 0;
+font-size: 30px;
+margin-bottom: 20px;
+}
+
+.em_holder, .pass_holder{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#submit{
+    margin-top: 20px;
+    margin-left: 15px;
+    font-size: 20px;
+    padding: 5px;
+    width: 250px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #ffc7c7;
+}
+
+
+.email_input, .pass_input{
+    padding: 10px;
+    border-radius: 5px;
+    border: #ffc7c7;
+    border-style: solid;
+    border-width: 2px;
+    width: 250px;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.links a{
+    color:#f79090;
+}
+
+#back{
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    width: 170px;
+    background-color: #ffc7c7;
+    transition: all 0.5s ease;
+
+}
+
+#back:hover{
+    transform: translateY(-5px);
+    background-color: #f56a6a;
+}
+
+.slider.active{
+    left: 0%;
+    z-index: 2;
+}
+
+.rightside.visible{
+    opacity: 1;
+}
+
+.leftcontent.invis ul li button {
+    display: none;
+    pointer-events: none;
+    cursor: none;
+}
+
+
+.success{
+    height: 200px;
+    width: 200px;
+    background-color: #ffc7c7;
+    position: absolute;
+    top: 35%;
+    left: 25%;
+    z-index: 2;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+#backSelect{
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    width: 170px;
+
+}
+
+
+
+
+
+
+
+
+
+
